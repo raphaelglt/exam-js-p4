@@ -2,6 +2,13 @@ const formElement = document.getElementById('exam-form');
 const accountElement = document.getElementById('compte');
 const ammountElement = document.getElementById('somme');
 
+const columns = document.getElementsByClassName('col');
+const transactionsElement = columns[0]
+const accountSendElement = columns[1]
+
+const transactions = [];
+const accountSend = [];
+
 function isPositiveInteger(str) {
     if (typeof str !== 'string') {
       return false;
@@ -60,6 +67,7 @@ function checkValues(account, amount) {
             .then((json) => {
                 console.log(json);
             })
+            updateFront(data);
             //créé une alert sur le navigateur pour avertir l'utilisateur que la somme a bien été déposée
             alert(`La somme de ${amount} à bien été déposée.`)
         } else {
@@ -70,6 +78,12 @@ function checkValues(account, amount) {
         //créé une alert sur le navigateur pour avertir l'utilisateur que le champ compte est incorrecte
         alert('Erreur sur le champ compte')
     }
+}
+
+function updateFront(data) {
+    const newTransaction = document.createElement('p')
+    newTransaction.innerText = `Transaction de ${data.amount} avec ${data.account}`
+    transactionsElement.appendChild(newTransaction)
 }
 
 //fonction qui vérifié si le numéro de compte
