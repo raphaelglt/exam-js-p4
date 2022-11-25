@@ -27,11 +27,18 @@ formElement.addEventListener('submit', (event) => {
     checkValues(account, amount)
 })
 
+//écoute les changement du champ text du numéro de compte
+accountElement.addEventListener('input', (event) => {
+    //vérifie si le compte est valide
+    if (checkAccount(event.target.value)) {
+        //cahnge la couleur de son background
+        accountElement.style.backgroundColor = '#6eff33';
+    }
+})
+
 function checkValues(account, amount) {
-    //change le account (string) en integer
-    const accountToNum = Number(account);
-    //vérifie que le compte possède 16 caractères et est bien un nombre
-    if (Number.isInteger(accountToNum) && account.length===15) {
+    //reçoie la réponse de la fonction checkAccount
+    if (checkAccount(account)) {
         console.log('account correct');
         //change le amount (string) en integer
         const amountToNum = Number(amount);
@@ -43,5 +50,18 @@ function checkValues(account, amount) {
         }
     } else {
         console.log('account not correct');
+    }
+}
+
+//fonction qui vérifié si le numéro de compte
+//renvoie true si il l'est sinon false
+function checkAccount(account) {
+    //change le account (string) en integer
+    const accountToNum = Number(account);
+    //vérifie que le compte possède 16 caractères et est bien un nombre
+    if (Number.isInteger(accountToNum) && account.length===15) {
+        return true
+    } else {
+        return false
     }
 }
