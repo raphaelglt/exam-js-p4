@@ -39,18 +39,19 @@ accountElement.addEventListener('input', (event) => {
 function checkValues(account, amount) {
     //reçoie la réponse de la fonction checkAccount
     if (checkAccount(account)) {
-        console.log('account correct');
         //change le amount (string) en integer
         const amountToNum = Number(amount);
         //vérifie que le montant est supérieur à 0 et est bien un nombre
         if (Number.isInteger(amountToNum) && amount.length>0) {
-            console.log('amount correct');
+            //créé une alert sur le navigateur pour avertir l'utilisateur que la somme a bien été déposée
             alert(`La somme de ${amount} à bien été déposée.`)
         } else {
-            console.log('amount not correct');
+            //créé une alert sur le navigateur pour avertir l'utilisateur que le champ somme est incorrecte
+            alert('Erreur sur le champ somme')
         }
     } else {
-        console.log('account not correct');
+        //créé une alert sur le navigateur pour avertir l'utilisateur que le champ compte est incorrecte
+        alert('Erreur sur le champ compte')
     }
 }
 
