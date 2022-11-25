@@ -43,6 +43,23 @@ function checkValues(account, amount) {
         const amountToNum = Number(amount);
         //vérifie que le montant est supérieur à 0 et est bien un nombre
         if (Number.isInteger(amountToNum) && amount.length>0) {
+            //créé un dictionnaire des valeurs
+            const data = {
+                account,
+                amount,
+            };
+            //fait une requête GET à l'URL suivante avec fetch
+            fetch(`http://exjs.apigame.co/data.php?compte=${account}&somme=${amount}`, {
+                mode: 'no-cors',
+                method: 'post',
+                body: new URLSearchParams(data),
+            })
+            .then((response) => {
+                return response.text();
+            })
+            .then((json) => {
+                console.log(json);
+            })
             //créé une alert sur le navigateur pour avertir l'utilisateur que la somme a bien été déposée
             alert(`La somme de ${amount} à bien été déposée.`)
         } else {
