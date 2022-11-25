@@ -45,6 +45,7 @@ function checkValues(account, amount) {
         //vérifie que le montant est supérieur à 0 et est bien un nombre
         if (Number.isInteger(amountToNum) && amount.length>0) {
             console.log('amount correct');
+            alert(`La somme de ${amount} à bien été déposée.`)
         } else {
             console.log('amount not correct');
         }
