@@ -6,7 +6,6 @@ const columns = document.getElementsByClassName('col');
 const transactionsElement = columns[0]
 const accountSendElement = columns[1]
 
-const transactions = [];
 const accountSend = [];
 
 function isPositiveInteger(str) {
@@ -81,9 +80,15 @@ function checkValues(account, amount) {
 }
 
 function updateFront(data) {
-    const newTransaction = document.createElement('p')
-    newTransaction.innerText = `Transaction de ${data.amount} avec ${data.account}`
-    transactionsElement.appendChild(newTransaction)
+    const newTransaction = document.createElement('p');
+    newTransaction.innerText = `Transaction de ${data.amount} avec ${data.account}`;
+    transactionsElement.appendChild(newTransaction);
+    if (!accountSend.includes(data.account)) {
+        accountSend.push(data.account);
+        const newAccount = document.createElement('p');
+        newAccount.innerText = `Compte: ${data.account}`;
+        accountSendElement.appendChild(newAccount);
+    }
 }
 
 //fonction qui vérifié si le numéro de compte
